@@ -1,0 +1,4 @@
+{
+    "python.testing.unittestEnabled": false, // ms-python.python
+    "python.testing.pytestEnabled": true,
+}
