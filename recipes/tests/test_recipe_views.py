@@ -89,3 +89,4 @@ class RecipeViewsTest(RecipeTestBase):
         # Check if one recipe exists
         self.assertIn(needed_title, content)
 
+
