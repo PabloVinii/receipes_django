@@ -1,14 +1,14 @@
-from django.http import HttpResponse
 from utils.recipes.factory import make_recipe
 from recipes.models import Recipe
 from django.shortcuts import get_list_or_404, get_object_or_404, render
-
+from django.http.response import Http404
 
 def home(request):
     recipes = Recipe.objects.all().order_by('-id')
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes,
     })
+
 
 def category(request, category_id):
     recipes = get_list_or_404(
@@ -23,6 +23,7 @@ def category(request, category_id):
         'title': f'{recipes[0].category.name} - Category | '
     })
 
+
 def recipe(request, id):
     recipe = get_object_or_404(Recipe, pk=id, is_published=True,)
 
@@ -31,3 +32,10 @@ def recipe(request, id):
         'is_detail_page': True,
     })
 
+
+def search(request):
+    search_term = request.GET.get('search')
+
+    if not search_term:
+        raise Http404()
+    return render(request, 'recipes/pages/search.html')
