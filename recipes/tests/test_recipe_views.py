@@ -98,6 +98,8 @@ class RecipeViewsTest(RecipeTestBase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
+    
+
 
 
 
